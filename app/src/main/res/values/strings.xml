@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MeuApp</string>
+    <string name="ol_usu_rio">Olá, usuário!</string>
+    <string name="selecione_a_data">Selecione a data</string>
+    <string name="selecione_a_hora">Selecione a hora</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
+    <string name="voltar_ao_menu">Voltar ao Menu</string>
+    <integer-array name="numero_da_matricula">Numero da matrícula</integer-array>
+
+
+</resources>

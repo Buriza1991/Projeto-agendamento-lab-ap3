@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lab1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/txtTituloCadastroInicial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Primeiro Cadastro"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:background="@drawable/gradiente_text"
+            android:padding="12dp"
+            android:shadowColor="#80000000"
+            android:shadowDx="3"
+            android:shadowDy="4"
+            android:shadowRadius="6"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Matrícula Gerada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#80FFFFFF"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔑 IMPORTANTE!"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/txtMatriculaGerada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sua matrícula será: 0001"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1976D2"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anote esta matrícula! Ela será sua chave de acesso ao sistema."
+                android:textSize="14sp"
+                android:textColor="#424242"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <!-- Campos de Cadastro -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dados Pessoais"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp" />
+
+        <EditText
+            android:id="@+id/edtNomeCompletoInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Nome Completo *"
+            android:inputType="textPersonName"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtIdadeInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Idade *"
+            android:inputType="number"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtCursoInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Curso *"
+            android:inputType="text"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtTelefoneInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Telefone *"
+            android:inputType="phone"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#757575" />
+
+        <EditText
+            android:id="@+id/edtEnderecoInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Endereço *"
+            android:inputType="textPostalAddress"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
+            android:textColorHint="#757575" />
+
+        <!-- Observação sobre campos obrigatórios -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="* Campos obrigatórios"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="italic"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Botões -->
+        <Button
+            android:id="@+id/btnCadastrarInicial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Realizar Cadastro"
+            android:backgroundTint="#4CAF50"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnJaTenhoCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Já tenho cadastro - Fazer Login"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Footer -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/gradiente_text"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="© 2025 Todos os direitos reservados."
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="1dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="Desenvolvido por: Breno Aguiar e Davi Damasceno"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginTop="4dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView> 

@@ -1,0 +1,6 @@
+{
+  "platformName": "Android",
+  "deviceName": "emulator-5554",
+  "automationName": "UiAutomator2",
+  "app": "${CURDIR}/../apps/seu_app.apk"
+}

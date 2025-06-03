@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:layout_margin="8dp"
+    android:background="#FFFFFF"
+    android:elevation="4dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtNomeAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome do Aluno"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#000000" />
+
+        <TextView
+            android:id="@+id/txtMatriculaAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matrícula: 000000"
+            android:textSize="14sp"
+            android:textColor="#666666" />
+
+        <TextView
+            android:id="@+id/txtCursoAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Curso: "
+            android:textSize="14sp"
+            android:textColor="#666666" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnEditarAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Editar"
+            android:textSize="12sp"
+            android:backgroundTint="#2196F3" />
+
+        <Button
+            android:id="@+id/btnExcluirAluno"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Excluir"
+            android:textSize="12sp"
+            android:backgroundTint="#F44336" />
+
+    </LinearLayout>
+
+</LinearLayout> 
