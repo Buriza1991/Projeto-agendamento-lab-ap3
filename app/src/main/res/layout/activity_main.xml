@@ -58,6 +58,7 @@
         android:id="@+id/edtNome"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textColorHint="#2297BC"
         android:minHeight="48dp"
         android:padding="12dp"
         android:background="@android:color/white"

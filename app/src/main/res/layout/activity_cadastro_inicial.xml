@@ -80,12 +80,13 @@
             android:id="@+id/edtNomeCompletoInicial"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:textColor="#2297BC"
             android:hint="Nome Completo *"
             android:inputType="textPersonName"
             android:background="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#2297BC" />
 
         <EditText
             android:id="@+id/edtIdadeInicial"
@@ -93,10 +94,11 @@
             android:layout_height="48dp"
             android:hint="Idade *"
             android:inputType="number"
+            android:textColor="#2297BC"
             android:background="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#2297BC" />
 
         <EditText
             android:id="@+id/edtCursoInicial"
@@ -104,10 +106,11 @@
             android:layout_height="48dp"
             android:hint="Curso *"
             android:inputType="text"
+            android:textColor="#2297BC"
             android:background="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#2297BC" />
 
         <EditText
             android:id="@+id/edtTelefoneInicial"
@@ -115,10 +118,11 @@
             android:layout_height="48dp"
             android:hint="Telefone *"
             android:inputType="phone"
+            android:textColor="#2297BC"
             android:background="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="12dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#2297BC" />
 
         <EditText
             android:id="@+id/edtEnderecoInicial"
@@ -126,10 +130,11 @@
             android:layout_height="48dp"
             android:hint="Endereço *"
             android:inputType="textPostalAddress"
+            android:textColor="#2297BC"
             android:background="#FFFFFF"
             android:padding="12dp"
             android:layout_marginBottom="24dp"
-            android:textColorHint="#757575" />
+            android:textColorHint="#2297BC" />
 
         <!-- Observação sobre campos obrigatórios -->
         <TextView
@@ -194,7 +199,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:text="Desenvolvido por: Breno Aguiar e Davi Damasceno"
+                android:text="Desenvolvido por: Breno Aguiar e Davi Albuquerque"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginTop="4dp"/>

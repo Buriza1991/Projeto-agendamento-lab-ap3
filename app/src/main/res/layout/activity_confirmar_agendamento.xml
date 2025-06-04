@@ -63,12 +63,14 @@
         android:inputType="textPersonName"
         android:background="#FFFFFF"
         android:padding="12dp"
+        android:textColorHint="#2297BC"
         android:layout_marginBottom="16dp" />
 
     <EditText
         android:id="@+id/edtMatricula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColorHint="#2297BC"
         android:hint="Digite sua matrícula"
         android:inputType="number"
         android:background="#FFFFFF"
