@@ -149,7 +149,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:text="Desenvolvido por: Breno Aguiar e Davi Damasceno"
+            android:text="Desenvolvido por: Breno Aguiar e Davi Albuquerque"
             android:textSize="12sp"
             android:textStyle="bold"
             android:layout_marginTop="4dp"/>

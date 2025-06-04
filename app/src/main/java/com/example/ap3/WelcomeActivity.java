@@ -3,6 +3,8 @@ package com.example.ap3;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -35,6 +37,36 @@ public class WelcomeActivity extends AppCompatActivity {
         // Configurar textos
         txtTitulo.setText("Login do Sistema");
         txtInstrucoes.setText("Digite seu nome e matrícula para entrar");
+
+        // Filtro para permitir apenas letras e espaços no nome
+        InputFilter letrasFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isLetter(source.charAt(i)) && !Character.isWhitespace(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        edtNome.setFilters(new InputFilter[]{letrasFilter});
+
+        // Filtro para permitir apenas números na matrícula
+        InputFilter numerosFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isDigit(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        edtMatricula.setFilters(new InputFilter[]{numerosFilter});
 
         // Configurar listeners
         btnEntrar.setOnClickListener(v -> realizarLogin());
@@ -72,16 +104,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // Validar login
         Aluno alunoLogado = AlunosManager.getInstance().validarLogin(nome, matricula);
-        
+
         if (alunoLogado != null) {
             // Login bem-sucedido
             salvarSessaoUsuario(alunoLogado);
         } else {
             // Nome não confere com a matrícula
             String nomeCorreto = AlunosManager.getInstance().getNomePorMatricula(matricula);
-            Toast.makeText(this, 
-                "Nome não confere com a matrícula.\nNome cadastrado: " + nomeCorreto, 
-                Toast.LENGTH_LONG).show();
+            Toast.makeText(this,
+                    "Nome não confere com a matrícula.\nNome cadastrado: " + nomeCorreto,
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -95,9 +127,9 @@ public class WelcomeActivity extends AppCompatActivity {
         editor.apply();
 
         // Mostrar boas-vindas
-        Toast.makeText(this, 
-            "Bem-vindo(a), " + alunoLogado.getNomeCompleto() + "!", 
-            Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,
+                "Bem-vindo(a), " + alunoLogado.getNomeCompleto() + "!",
+                Toast.LENGTH_SHORT).show();
 
         // Ir para o menu
         Intent intent = new Intent(WelcomeActivity.this, MenuActivity.class);
@@ -122,4 +154,3 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 }
-

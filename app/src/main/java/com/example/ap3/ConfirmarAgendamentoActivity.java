@@ -2,6 +2,8 @@ package com.example.ap3;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -41,7 +43,21 @@ public class ConfirmarAgendamentoActivity extends AppCompatActivity {
         // Exibir dados selecionados
         txtSalaSelecionada.setText("Sala: " + sala);
         txtDataSelecionada.setText("Data: " + data);
-        
+
+        // Filtro para permitir apenas letras e espaços no nome
+        InputFilter letrasFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end,
+                                       Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    if (!Character.isLetter(source.charAt(i)) && !Character.isWhitespace(source.charAt(i))) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        edtNome.setFilters(new InputFilter[]{letrasFilter});
         if (horarios != null && !horarios.isEmpty()) {
             StringBuilder horariosStr = new StringBuilder("Horários: ");
             for (int i = 0; i < horarios.size(); i++) {
@@ -100,4 +116,6 @@ public class ConfirmarAgendamentoActivity extends AppCompatActivity {
             finish(); // Volta para a tela anterior
         });
     }
+
+
 } 
