@@ -60,35 +60,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Digite seu nome e matrícula para entrar"
+        android:text="Digite seu email e senha para entrar"
         android:textSize="16sp"
         android:textColor="#FFFFFF"
         android:textStyle="italic"
         android:layout_marginBottom="24dp" />
 
     <EditText
-        android:id="@+id/edtNome"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textColorHint="#2297BC"
         android:textColor="#2297BC"
         android:minHeight="48dp"
         android:padding="12dp"
+        android:inputType="textEmailAddress"
         android:background="@android:color/white"
-        android:hint="Digite seu nome completo"
+        android:hint="Digite seu email"
         android:layout_marginBottom="12dp" />
 
     <EditText
-        android:id="@+id/edtMatricula"
+        android:id="@+id/edtSenha"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:textColorHint="#2297BC"
         android:textColor="#2297BC"
         android:minHeight="48dp"
         android:padding="12dp"
-        android:inputType="number"
+        android:inputType="textPassword"
         android:background="@android:color/white"
-        android:hint="Digite sua matrícula (ex: 0001)"
+        android:hint="Digite sua senha"
         android:layout_marginBottom="16dp" />
 
     <Button

@@ -333,3 +333,182 @@ adb shell run-as com.example.ap3 cat /data/data/com.example.ap3/shared_prefs/usu
 3. ✅ Login com erro → Mensagens específicas
 4. ✅ Múltiplos usuários → Matrículas sequenciais
 5. ✅ Persistência → Dados mantidos após restart 
+
+# 🧪 Comandos para Executar Testes End-to-End
+
+## 📋 Pré-requisitos
+
+### 1. **Instalar Python**
+```bash
+# Baixe e instale Python de: https://www.python.org/downloads/
+# Durante a instalação, marque "Add Python to PATH"
+```
+
+### 2. **Instalar Node.js**
+```bash
+# Baixe e instale Node.js de: https://nodejs.org/
+```
+
+### 3. **Instalar Appium**
+```bash
+npm install -g appium
+```
+
+### 4. **Instalar Android SDK**
+- Instale Android Studio
+- Configure ANDROID_HOME no PATH
+- Instale um emulador ou conecte um dispositivo físico
+
+## 🚀 Execução Rápida
+
+### **Opção 1: Script Automático**
+```bash
+# Execute o script que configura tudo automaticamente
+python run_tests.py
+```
+
+### **Opção 2: Comandos Manuais**
+```bash
+# 1. Instalar dependências
+pip install -r requirements.txt
+
+# 2. Build do app Android
+./gradlew assembleDebug
+
+# 3. Instalar no dispositivo
+./gradlew installDebug
+
+# 4. Iniciar Appium Server (em outro terminal)
+appium --base-path /wd/hub
+
+# 5. Executar testes
+python -m pytest tests/ -v
+```
+
+## 🧪 Comandos de Teste Específicos
+
+### **Executar Todos os Testes**
+```bash
+python -m pytest tests/ -v
+```
+
+### **Executar Teste Específico**
+```bash
+# Teste de jornada completa
+python -m pytest tests/test_end_to_end_complete.py::TestEndToEndComplete::test_complete_user_journey -v
+
+# Teste de usuário novo
+python -m pytest tests/test_end_to_end_complete.py::TestEndToEndComplete::test_complete_user_journey_new_user -v
+
+# Teste de validações
+python -m pytest tests/test_end_to_end_complete.py::TestEndToEndComplete::test_field_validation_throughout_app -v
+
+# Teste de navegação
+python -m pytest tests/test_end_to_end_complete.py::TestEndToEndComplete::test_app_navigation_flow -v
+```
+
+### **Executar com Relatório**
+```bash
+# Relatório HTML
+python -m pytest tests/ --html=test_report.html --self-contained-html
+
+# Relatório XML (para CI/CD)
+python -m pytest tests/ --junitxml=test_results.xml
+```
+
+### **Executar em Modo Debug**
+```bash
+# Com mais informações de debug
+python -m pytest tests/ -v -s --tb=long
+```
+
+## 🔧 Configuração do Dispositivo
+
+### **Para Emulador Android**
+```bash
+# Listar emuladores disponíveis
+emulator -list-avds
+
+# Iniciar emulador
+emulator -avd [nome_do_emulador]
+```
+
+### **Para Dispositivo Físico**
+```bash
+# Habilitar modo desenvolvedor no Android
+# Conectar via USB
+# Habilitar depuração USB
+
+# Verificar dispositivos conectados
+adb devices
+```
+
+## 🐛 Solução de Problemas
+
+### **Erro: Python não encontrado**
+```bash
+# Instalar Python e adicionar ao PATH
+# Ou usar py launcher no Windows
+py -m pip install -r requirements.txt
+```
+
+### **Erro: Appium não encontrado**
+```bash
+# Instalar Node.js primeiro
+npm install -g appium
+```
+
+### **Erro: Dispositivo não encontrado**
+```bash
+# Verificar se dispositivo está conectado
+adb devices
+
+# Reiniciar servidor ADB
+adb kill-server
+adb start-server
+```
+
+### **Erro: App não instalado**
+```bash
+# Build e instalar o app
+./gradlew clean assembleDebug installDebug
+```
+
+## 📊 Interpretando Resultados
+
+### **Testes Passando**
+```
+✅ test_complete_user_journey PASSED
+✅ test_field_validation_throughout_app PASSED
+```
+
+### **Testes Falhando**
+```
+❌ test_complete_user_journey FAILED
+    assert False
+    +  where False = <function is_element_present at 0x...>
+```
+
+### **Relatórios Gerados**
+- `test_report.html` - Relatório visual detalhado
+- `test_results.xml` - Relatório para CI/CD
+
+## 🎯 Dicas Importantes
+
+1. **Sempre inicie o Appium Server** antes de executar os testes
+2. **Certifique-se que o app está instalado** no dispositivo
+3. **Use dispositivos com Android 7.0+** para melhor compatibilidade
+4. **Mantenha o dispositivo desbloqueado** durante os testes
+5. **Feche outros apps** para evitar conflitos
+
+## 📱 Configuração do App
+
+### **Permissões Necessárias**
+- Armazenamento
+- Câmera (se usar QR Code)
+- Notificações
+
+### **Configurações Recomendadas**
+- Modo desenvolvedor habilitado
+- Depuração USB ativada
+- Tela sempre ligada durante testes 

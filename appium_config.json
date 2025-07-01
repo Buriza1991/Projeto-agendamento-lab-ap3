@@ -1,0 +1,10 @@
+{
+  "platformName": "Android",
+  "automationName": "UiAutomator2",
+  "deviceName": "Android Device",
+  "appPackage": "com.example.ap3",
+  "appActivity": "com.example.ap3.SplashActivity",
+  "noReset": false,
+  "newCommandTimeout": 60,
+  "autoGrantPermissions": true
+} 

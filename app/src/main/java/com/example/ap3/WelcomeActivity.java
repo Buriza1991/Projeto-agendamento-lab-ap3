@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    EditText edtNome, edtMatricula;
+    EditText edtEmail, edtSenha;
     Button btnEntrar, btnNovoCadastro;
     TextView txtTitulo, txtInstrucoes;
 
@@ -29,44 +29,16 @@ public class WelcomeActivity extends AppCompatActivity {
         // Inicializar views
         txtTitulo = findViewById(R.id.txtTitulo);
         txtInstrucoes = findViewById(R.id.txtInstrucoes);
-        edtNome = findViewById(R.id.edtNome);
-        edtMatricula = findViewById(R.id.edtMatricula);
+        edtEmail = findViewById(R.id.edtEmail);
+        edtSenha = findViewById(R.id.edtSenha);
         btnEntrar = findViewById(R.id.btnEntrar);
         btnNovoCadastro = findViewById(R.id.btnNovoCadastro);
 
         // Configurar textos
         txtTitulo.setText("Login do Sistema");
-        txtInstrucoes.setText("Digite seu nome e matrícula para entrar");
+        txtInstrucoes.setText("Digite seu email e senha para entrar");
 
-        // Filtro para permitir apenas letras e espaços no nome
-        InputFilter letrasFilter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend) {
-                for (int i = start; i < end; i++) {
-                    if (!Character.isLetter(source.charAt(i)) && !Character.isWhitespace(source.charAt(i))) {
-                        return "";
-                    }
-                }
-                return null;
-            }
-        };
-        edtNome.setFilters(new InputFilter[]{letrasFilter});
-
-        // Filtro para permitir apenas números na matrícula
-        InputFilter numerosFilter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end,
-                                       Spanned dest, int dstart, int dend) {
-                for (int i = start; i < end; i++) {
-                    if (!Character.isDigit(source.charAt(i))) {
-                        return "";
-                    }
-                }
-                return null;
-            }
-        };
-        edtMatricula.setFilters(new InputFilter[]{numerosFilter});
+        // Configurar inputType para email e senha já está definido no XML
 
         // Configurar listeners
         btnEntrar.setOnClickListener(v -> realizarLogin());
@@ -80,40 +52,46 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void realizarLogin() {
-        String nome = edtNome.getText().toString().trim();
-        String matricula = edtMatricula.getText().toString().trim();
+        String email = edtEmail.getText().toString().trim();
+        String senha = edtSenha.getText().toString().trim();
 
         // Validações básicas
-        if (nome.isEmpty()) {
-            edtNome.setError("Digite seu nome");
-            edtNome.requestFocus();
+        if (email.isEmpty()) {
+            edtEmail.setError("Digite seu email");
+            edtEmail.requestFocus();
             return;
         }
 
-        if (matricula.isEmpty()) {
-            edtMatricula.setError("Digite sua matrícula");
-            edtMatricula.requestFocus();
+        if (senha.isEmpty()) {
+            edtSenha.setError("Digite sua senha");
+            edtSenha.requestFocus();
             return;
         }
 
-        // Verificar se matrícula existe
-        if (!AlunosManager.getInstance().matriculaExiste(matricula)) {
-            Toast.makeText(this, "Matrícula não encontrada. Faça novo cadastro.", Toast.LENGTH_LONG).show();
+        // Validar formato de email
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmail.setError("Digite um email válido");
+            edtEmail.requestFocus();
+            return;
+        }
+
+        // Verificar se email existe
+        if (!AlunosManager.getInstance().emailExiste(email)) {
+            Toast.makeText(this, "Email não encontrado. Faça novo cadastro.", Toast.LENGTH_LONG).show();
             return;
         }
 
         // Validar login
-        Aluno alunoLogado = AlunosManager.getInstance().validarLogin(nome, matricula);
+        Aluno alunoLogado = AlunosManager.getInstance().validarLoginEmailSenha(email, senha);
 
         if (alunoLogado != null) {
             // Login bem-sucedido
             salvarSessaoUsuario(alunoLogado);
         } else {
-            // Nome não confere com a matrícula
-            String nomeCorreto = AlunosManager.getInstance().getNomePorMatricula(matricula);
-            Toast.makeText(this,
-                    "Nome não confere com a matrícula.\nNome cadastrado: " + nomeCorreto,
-                    Toast.LENGTH_LONG).show();
+            // Senha incorreta
+            Toast.makeText(this, "Senha incorreta. Tente novamente.", Toast.LENGTH_LONG).show();
+            edtSenha.setText("");
+            edtSenha.requestFocus();
         }
     }
 
@@ -123,6 +101,7 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("nome_usuario", alunoLogado.getNomeCompleto());
         editor.putString("matricula_usuario", alunoLogado.getMatricula());
+        editor.putString("email_usuario", alunoLogado.getEmail());
         editor.putString("id_usuario", alunoLogado.getId());
         editor.apply();
 
@@ -150,7 +129,7 @@ public class WelcomeActivity extends AppCompatActivity {
             super.onBackPressed();
         } else {
             // Se há usuários, mostrar opção de cadastro
-            Toast.makeText(this, "Use \"Novo Cadastro\" se não possui matrícula", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Use \"Novo Cadastro\" se não possui conta", Toast.LENGTH_SHORT).show();
         }
     }
 }

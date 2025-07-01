@@ -41,13 +41,15 @@ public class AlunosManager {
     }
     
     // Adicionar novo aluno com matrícula automática
-    public String adicionarAluno(String nomeCompleto, String idade, String curso, String telefone, String endereco) {
+    public String adicionarAluno(String nomeCompleto, String email, String senha, String idade, String curso, String telefone, String endereco) {
         String novaMatricula = gerarProximaMatricula();
         
         Aluno novoAluno = new Aluno();
         novoAluno.setId(String.valueOf(System.currentTimeMillis()));
         novoAluno.setNomeCompleto(nomeCompleto);
         novoAluno.setMatricula(novaMatricula);
+        novoAluno.setEmail(email);
+        novoAluno.setSenha(senha);
         novoAluno.setIdade(idade);
         novoAluno.setCurso(curso);
         novoAluno.setTelefone(telefone);
@@ -82,7 +84,7 @@ public class AlunosManager {
         salvarAlunos();
     }
     
-    // Validar login com nome e matrícula
+    // Validar login com nome e matrícula (método legado)
     public Aluno validarLogin(String nome, String matricula) {
         for (Aluno aluno : alunos) {
             if (aluno.getMatricula().equals(matricula)) {
@@ -98,11 +100,38 @@ public class AlunosManager {
         // Matrícula não encontrada
         return null;
     }
+
+    // Validar login com email e senha
+    public Aluno validarLoginEmailSenha(String email, String senha) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getEmail() != null && aluno.getEmail().equalsIgnoreCase(email.trim())) {
+                // Email existe, verificar se a senha confere
+                if (aluno.getSenha() != null && aluno.getSenha().equals(senha)) {
+                    return aluno; // Login válido
+                } else {
+                    // Senha não confere com o email
+                    return null; 
+                }
+            }
+        }
+        // Email não encontrado
+        return null;
+    }
     
     // Verificar se matrícula existe
     public boolean matriculaExiste(String matricula) {
         for (Aluno aluno : alunos) {
             if (aluno.getMatricula().equals(matricula)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Verificar se email existe
+    public boolean emailExiste(String email) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getEmail() != null && aluno.getEmail().equalsIgnoreCase(email.trim())) {
                 return true;
             }
         }
@@ -180,6 +209,8 @@ public class AlunosManager {
                 editor.putString(prefix + "id", aluno.getId());
                 editor.putString(prefix + "nome", aluno.getNomeCompleto());
                 editor.putString(prefix + "matricula", aluno.getMatricula());
+                editor.putString(prefix + "email", aluno.getEmail());
+                editor.putString(prefix + "senha", aluno.getSenha());
                 editor.putString(prefix + "idade", aluno.getIdade());
                 editor.putString(prefix + "curso", aluno.getCurso());
                 editor.putString(prefix + "telefone", aluno.getTelefone());
@@ -203,6 +234,8 @@ public class AlunosManager {
                 String id = preferences.getString(prefix + "id", "");
                 String nome = preferences.getString(prefix + "nome", "");
                 String matricula = preferences.getString(prefix + "matricula", "");
+                String email = preferences.getString(prefix + "email", "");
+                String senha = preferences.getString(prefix + "senha", "");
                 String idade = preferences.getString(prefix + "idade", "");
                 String curso = preferences.getString(prefix + "curso", "");
                 String telefone = preferences.getString(prefix + "telefone", "");
@@ -213,6 +246,8 @@ public class AlunosManager {
                     aluno.setId(id);
                     aluno.setNomeCompleto(nome);
                     aluno.setMatricula(matricula);
+                    aluno.setEmail(email);
+                    aluno.setSenha(senha);
                     aluno.setIdade(idade);
                     aluno.setCurso(curso);
                     aluno.setTelefone(telefone);

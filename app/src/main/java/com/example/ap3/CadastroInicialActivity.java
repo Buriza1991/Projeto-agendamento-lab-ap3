@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class CadastroInicialActivity extends AppCompatActivity {
 
-    EditText edtNomeCompletoInicial, edtIdadeInicial, edtCursoInicial, 
+    EditText edtNomeCompletoInicial, edtEmailInicial, edtSenhaInicial, edtIdadeInicial, edtCursoInicial, 
              edtTelefoneInicial, edtEnderecoInicial;
     Button btnCadastrarInicial, btnJaTenhoCadastro;
     TextView txtMatriculaGerada;
@@ -27,6 +27,8 @@ public class CadastroInicialActivity extends AppCompatActivity {
         // Inicializar views
         txtMatriculaGerada = findViewById(R.id.txtMatriculaGerada);
         edtNomeCompletoInicial = findViewById(R.id.edtNomeCompletoInicial);
+        edtEmailInicial = findViewById(R.id.edtEmailInicial);
+        edtSenhaInicial = findViewById(R.id.edtSenhaInicial);
         edtIdadeInicial = findViewById(R.id.edtIdadeInicial);
         edtCursoInicial = findViewById(R.id.edtCursoInicial);
         edtTelefoneInicial = findViewById(R.id.edtTelefoneInicial);
@@ -45,6 +47,8 @@ public class CadastroInicialActivity extends AppCompatActivity {
 
     private void realizarCadastro() {
         String nomeCompleto = edtNomeCompletoInicial.getText().toString().trim();
+        String email = edtEmailInicial.getText().toString().trim();
+        String senha = edtSenhaInicial.getText().toString().trim();
         String idade = edtIdadeInicial.getText().toString().trim();
         String curso = edtCursoInicial.getText().toString().trim();
         String telefone = edtTelefoneInicial.getText().toString().trim();
@@ -54,6 +58,31 @@ public class CadastroInicialActivity extends AppCompatActivity {
         if (nomeCompleto.isEmpty()) {
             edtNomeCompletoInicial.setError("Nome é obrigatório");
             edtNomeCompletoInicial.requestFocus();
+            return;
+        }
+
+        if (email.isEmpty()) {
+            edtEmailInicial.setError("Email é obrigatório");
+            edtEmailInicial.requestFocus();
+            return;
+        }
+
+        // Validar formato de email
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            edtEmailInicial.setError("Digite um email válido");
+            edtEmailInicial.requestFocus();
+            return;
+        }
+
+        if (senha.isEmpty()) {
+            edtSenhaInicial.setError("Senha é obrigatória");
+            edtSenhaInicial.requestFocus();
+            return;
+        }
+
+        if (senha.length() < 6) {
+            edtSenhaInicial.setError("Senha deve ter pelo menos 6 caracteres");
+            edtSenhaInicial.requestFocus();
             return;
         }
 
@@ -84,7 +113,7 @@ public class CadastroInicialActivity extends AppCompatActivity {
         // Realizar cadastro
         try {
             String matriculaGerada = AlunosManager.getInstance().adicionarAluno(
-                nomeCompleto, idade, curso, telefone, endereco
+                nomeCompleto, email, senha, idade, curso, telefone, endereco
             );
 
             // Mostrar matrícula gerada

@@ -6,6 +6,8 @@ public class Aluno implements Serializable {
     private String id;
     private String nomeCompleto;
     private String matricula;
+    private String email;
+    private String senha;
     private String idade;
     private String curso;
     private String telefone;
@@ -16,10 +18,12 @@ public class Aluno implements Serializable {
         this.id = String.valueOf(System.currentTimeMillis());
     }
 
-    public Aluno(String nomeCompleto, String matricula, int idade, String curso, String telefone, String endereco) {
+    public Aluno(String nomeCompleto, String matricula, String email, String senha, int idade, String curso, String telefone, String endereco) {
         this();
         this.nomeCompleto = nomeCompleto;
         this.matricula = matricula;
+        this.email = email;
+        this.senha = senha;
         this.idade = String.valueOf(idade);
         this.curso = curso;
         this.telefone = telefone;
@@ -49,6 +53,22 @@ public class Aluno implements Serializable {
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public String getIdade() {

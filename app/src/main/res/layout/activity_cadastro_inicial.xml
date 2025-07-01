@@ -89,6 +89,30 @@
             android:textColorHint="#2297BC" />
 
         <EditText
+            android:id="@+id/edtEmailInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:textColor="#2297BC"
+            android:hint="Email *"
+            android:inputType="textEmailAddress"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#2297BC" />
+
+        <EditText
+            android:id="@+id/edtSenhaInicial"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:textColor="#2297BC"
+            android:hint="Senha *"
+            android:inputType="textPassword"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColorHint="#2297BC" />
+
+        <EditText
             android:id="@+id/edtIdadeInicial"
             android:layout_width="match_parent"
             android:layout_height="48dp"

@@ -1,0 +1,6 @@
+pytest==7.4.3
+pytest-html==4.1.1
+appium-python-client==3.1.1
+selenium==4.15.2
+robotframework==6.1.1
+robotframework-appiumlibrary==1.7.0 
