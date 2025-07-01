@@ -1,0 +1,1 @@
+# Testes automatizados para o app de agendamento 
